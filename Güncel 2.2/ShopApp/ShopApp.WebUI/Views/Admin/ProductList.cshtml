@@ -1,0 +1,126 @@
+﻿@model ProductListModel
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mt-5">Ürünler</h1>
+<hr />
+
+<a class="btn btn-success mb-3 btn-lg" href="/admin/createproduct">Ürün Ekle</a>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Kategoriler
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="categoriesTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Fotoğraf</th>
+                        <th>Ürün Adı</th>
+                        <th>Ürün Fiyat</th>
+                        <th>Ana Sayfada Mı?</th>
+                        <th>Onaylı Mı?</th>
+                        <td></td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.Products)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td><img src="~/img/@item.ImageUrl" width="80" /></td>
+                            <td>@item.Name</td>
+                            <td>@item.Price</td>
+                            <td>
+                                @if (item.IsHome)
+                                {
+                                    <i class="fas fa-check-circle text-success"></i>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-times-circle text-danger"></i>
+                                }
+                            </td>
+                            <td>
+                                @if (item.IsApproved)
+                                {
+                                    <i class="fas fa-check-circle text-success "></i>
+                                }
+                                else
+                                {
+                                    <i class="fas fa-times-circle text-danger"></i>
+                                }
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm mr-2" href="/admin/editproduct/@item.Id">Düzenle</a>
+                                <form action="/admin/deleteproduct" method="post" style="display:inline;">
+                                    <input type="hidden" name="productId" value="@item.Id" />
+                                    <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+{
+
+    <script>
+        $(document).ready(function () {
+            $('#categoriesTable').DataTable();
+        });
+    </script>
+
+}
+
+@*@if (Model.Products.Count() > 0)
+{
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td style="width:30px;">Id</td>
+                <td style="width:100px;">Image</td>
+                <td>Name</td>
+                <td style="width:12px;">Price</td>
+                <td style="width:150px;"></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td><img src="~/img/@item.ImageUrl" width="80" /></td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm mr-2" href="/admin/products/@item.Id">Edit</a>
+                        <form action="/admin/deleteproduct" method="post" style="display:inline;">
+                            <input type="hidden" name="productId" value="@item.Id" />
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        <h4>No Products</h4>
+    </div>
+}*@

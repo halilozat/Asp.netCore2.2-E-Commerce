@@ -1,0 +1,104 @@
+﻿@model Product
+
+
+<!--<div class="container col-md-4">-->
+    @*<div class="card mb-3" style="border-radius:25px">
+        
+        <div class="featured__item__text">
+            <h6><a href="#">@Model.Name</a></h6>
+        </div>
+        <center><img src="~/img/@Model.ImageUrl " alt="@Model.Name" style="height:200px" width="200" /></center>
+        <div class="featured__item__text">
+            <h5> <i class="fas fa-lira-sign"></i>@Model.Price</h5>
+            <br />
+        </div>
+        <div class="card-footer text-center">
+            <a asp-controller="Shop" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-dark btn-sm " style="border-radius:25px"><i class="fa fa-info-circle"></i>Ürün Detay</a>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline;">
+                    <input type="hidden" name="productId" value="@Model.Id" />
+                    <input type="hidden" name="quantity" value="1" />
+                    <button type="submit" class="btn btn-outline-dark btn-sm ml-3" style="border-radius:25px"><i class="fa fa-shopping-cart"></i> Sepete Ekle</button>
+                </form>
+            }
+        </div>
+    </div>*@
+
+
+
+
+<!--</div>-->
+
+
+
+
+
+
+
+
+
+    <!--<div class="col-md-4  mb-4 mt-4 mb-lg-0">-->
+        <!-- Card-->
+        <!--<div class="card rounded shadow-sm mb-4" style="border: 8px ridge #7b3200; " >
+            <div class="card-body p-4 text-center">
+                <img src="~/img/@Model.ImageUrl " alt="@Model.Name"  style="height:300px" width="300"> 
+                <h3> <a href="#" class="text-dark">@Model.Name</a></h3>
+                <h5> <i class="fas fa-lira-sign"></i>@Model.Price</h5>
+                <br />
+                <div class="text-center">
+                    <a asp-controller="Shop" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-dark btn-sm " style="border-radius:25px"><i class="fa fa-info-circle"></i>Ürün Detay</a>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline;">
+                            <input type="hidden" name="productId" value="@Model.Id" />
+                            <input type="hidden" name="quantity" value="1" />
+                            <button type="submit" class="btn btn-outline-dark btn-sm ml-3" style="border-radius:25px"><i class="fa fa-shopping-cart"></i> Sepete Ekle</button>
+                        </form>
+                    }
+                </div>
+
+            </div>
+        </div>x""
+    </div>-->    
+<link href="~/css/cardStyle.css" rel="stylesheet" />
+<div class="col-md-4">
+    <div class="container-fluid d-flex justify-content-center" >
+        <figure class="card card-product-grid card-lg">
+            <a asp-controller="Shop" asp-action="Details" asp-route-id="@Model.Id" class="img-wrap" data-abc="true"> <img src="~/img/@Model.ImageUrl " alt="@Model.Name"></a>
+            <figcaption class="info-wrap">
+                <div class="row">
+                    <div class="col-md-9 col-xs-9"> <a href="#" class="title" data-abc="true"><h4>@Model.Name</h4></a> <span class="rated"></span> </div>
+                    <div class="col-md-3 col-xs-3">
+                        @*<div class="rating text-right"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <span class="rated">Rated 4.0/5</span> </div>*@
+                    </div>
+                </div>
+            </figcaption>
+            <div class="bottom-wrap-payment">
+                <figcaption class="info-wrap">
+                    <div class="row">
+                        <div class="col-md-9 col-xs-9">
+                            <a href="#" class="title" data-abc="true"><i class="fas fa-lira-sign"></i>@Model.Price</a> <span class="rated"></span>
+                        </div>
+
+                    </div>
+                </figcaption>
+            </div>
+            <div class="text-center  mb-3">
+                <a asp-controller="Shop" asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-dark btn-primary btn-sm " style="border-radius:25px"><i class="fa fa-info-circle text-white"></i> Ürün Detay</a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline;">
+                        <input type="hidden" name="productId" value="@Model.Id" />
+                        <input type="hidden" name="quantity" value="1" />
+                        <button type="submit" class="btn btn-outline-dark btn-primary btn-sm ml-3" style="border-radius:25px"><i class="fa fa-shopping-cart text-white"></i> Sepete Ekle</button>
+                    </form>
+                }
+            </div>
+        </figure>
+    </div>
+    </div>
+

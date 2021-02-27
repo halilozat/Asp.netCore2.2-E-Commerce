@@ -1,0 +1,124 @@
+﻿@model List<OrderListModel>
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "GetOrders";
+}
+
+<h1 class="mt-5">Siparişler</h1>
+<hr />
+
+@foreach (var order in Model)
+    {
+
+        <br />
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                Siparişler
+            </div>
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="example" width="100%" cellspacing="0">
+
+                        <thead>
+                            <tr>
+                                <th>Müşteri Adı</th>
+                                <th>Adresi</th>
+                                <th>Tel No</th>
+                                <th>E Posta</th>
+                                <th>Odeme Durumu</th>
+                                <th>Sipariş Durumu</th>
+                                <th>Sipariş Tarihi</th>
+                                
+                                    <th>Alınanlar</th>
+                               
+                                <th>Toplam Tutar</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>@order.FirstName @order.LastName</td>
+                                <td>@order.Address</td>
+                                <td>@order.Phone</td>
+                                <td>@order.Email</td>
+                                <td>@order.PaymentTypes</td>
+                                <td>@GetEnumValue.GetDescription(order.OrderState)</td>
+                                <td>@order.OrderDate.ToShortDateString() / @order.OrderDate.ToShortTimeString()</td>
+                                <td>
+                                    @foreach (var orderItem in order.OrderItems)
+                                    {
+
+                                        @orderItem.Name <small>x</small> <small>@orderItem.Quantity</small>
+
+
+                                    }
+                                </td>
+                                    <td>@order.TotalPrice()</td>
+
+
+                                </tr>
+
+
+                        </tbody>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts
+{
+
+    <script>
+        $(document).ready(function () {
+            $('#example').DataTable({
+
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ]
+            });
+        });
+
+    </script>
+
+}
+
+

@@ -1,0 +1,233 @@
+﻿<div id="preloder">
+    <div class="loader"></div>
+</div>
+<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper">
+    <div class="humberger__menu__logo">
+        <a href="#"><img src="~/User/img/logo3.png" alt=""></a>
+    </div>
+    
+    <div class="humberger__menu__widget">
+        <div class="header__top__right__language">
+            <img src="~/User/img/bayrak.png" alt="">
+            <div>Türkçe</div>
+            <span class="arrow_carrot-down"></span>
+            <ul>
+                <li><a href="#">Türkçe</a></li>
+            </ul>
+        </div>
+        <div class="header__top__right__auth">
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="header__top__right__social">
+
+                    @*<a asp-controller="Account" asp-action="Manage">
+                        @User.Identity.Name
+                    </a>*@
+                    <a asp-controller="Account" asp-action="Logout"><i class="fa fa-user"></i>Çıkış Yap</a>
+                </div>
+            }
+            else
+            {
+                <div class="header__top__right__social">
+                    <a asp-controller="Account" asp-action="Login"><i class="fa fa-user"></i> Giriş Yap</a>
+                    <a asp-controller="Account" asp-action="Register"><i class="fa fa-user"></i> Kayıt Ol</a>
+                </div>
+            }
+        </div>
+    </div>
+    <nav class="humberger__menu__nav mobile-menu">
+        <ul>
+            <li class="active"><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+            <li><a asp-controller="Shop" asp-action="List">Ürünler</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li>
+                    <a href="#">Sepetim</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a asp-controller="Cart" asp-action="Index">Sepetim</a></li>
+                        <li><a asp-controller="Cart" asp-action="GetOrders">Siparişlerim</a></li>
+                    </ul>
+                </li>
+                if (User.IsInRole("admin"))
+                {
+
+                    <li>
+                        <a href="#">Admin</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a asp-controller="Admin" asp-action="Index">Admin Paneli</a></li>
+                            <li><a asp-controller="Admin" asp-action="ProductList">Ürünler</a></li>
+                            <li><a asp-controller="Admin" asp-action="CreateProduct">Ürün Ekle</a></li>
+                            <li><a asp-controller="Admin" asp-action="CategoryList">Kategoriler</a></li>
+                            <li><a asp-controller="Admin" asp-action="CreateCategory">Kategori Ekle</a></li>
+                            <li><a asp-controller="Admin" asp-action="OrderList">Siparişler</a></li>
+                            <li><a asp-controller="Admin" asp-action="UserList">Kullanıcılar</a></li>
+                        </ul>
+                    </li>
+                }
+                if (User.IsInRole("kurye"))
+                {
+
+                    <li>
+                        <a href="#">Kurye İşlemleri</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a asp-controller="Admin" asp-action="ProductList">Sipariş Durumu</a></li>
+                        </ul>
+                    </li>
+                }
+                if (User.IsInRole("kasiyer"))
+                {
+
+                    <li>
+                        <a href="#">Kasiyer İşlemleri</a>
+                        <ul class="header__menu__dropdown">
+                            <li><a asp-controller="Admin" asp-action="ProductList">Kasa</a></li>
+                        </ul>
+                    </li>
+                }
+
+            }
+        </ul>
+    </nav>
+    <div id="mobile-menu-wrap"></div>
+    
+</div>
+
+
+<header class="header">
+    <div class="header__top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__left">
+                        <ul>
+                            <li><i class="fa fa-envelope"></i> deneme@gmail.com</li>
+                            <li>Hızlı, güvenilir alışveris.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="header__top__right">
+                        <div class="header__top__right__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        </div>
+                        <div class="header__top__right__language">
+                            <img src="~/User/img/bayrak.png" alt="">
+                            <div>Türkçe</div>
+                            <span class="arrow_carrot-down"></span>
+                            <ul>
+                                <li><a href="#">Türkçe</a></li>
+                            </ul>
+                        </div>
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="header__top__right__social">
+
+                                <a asp-controller="Account" asp-action="Manage">
+                                    @User.Identity.Name
+                                </a>
+                                <a asp-controller="Account" asp-action="Logout"><i class="fa fa-user"></i>Çıkış Yap</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="header__top__right__social">
+                                <a asp-controller="Account" asp-action="Login"><i class="fa fa-user"></i> Giriş Yap</a>
+                                <a asp-controller="Account" asp-action="Register"><i class="fa fa-user"></i> Kayıt Ol</a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="header__logo">
+                    <a asp-controller="Home" asp-action="Index"><img src="~/User/img/logo3.png" alt="" style="margin-left:30px"></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <nav class="header__menu">
+                    <ul>
+                        <li class="active"><a asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+                        <li><a asp-controller="Shop" asp-action="List">Ürünler</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="#">Sepetim</a>
+                                <ul class="header__menu__dropdown">
+                                    <li><a asp-controller="Cart" asp-action="Index">Sepetim</a></li>
+                                    <li><a asp-controller="Cart" asp-action="GetOrders">Siparişlerim</a></li>
+                                </ul>
+                            </li>
+                            if (User.IsInRole("admin"))
+                            {
+
+                                <li>
+                                    <a href="#">Admin</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a asp-controller="Admin" asp-action="Index">Admin Paneli</a></li>
+                                        <li><a asp-controller="Admin" asp-action="ProductList">Ürünler</a></li>
+                                        <li><a asp-controller="Admin" asp-action="CreateProduct">Ürün Ekle</a></li>
+                                        <li><a asp-controller="Admin" asp-action="CategoryList">Kategoriler</a></li>
+                                        <li><a asp-controller="Admin" asp-action="CreateCategory">Kategori Ekle</a></li>
+                                        <li><a asp-controller="Admin" asp-action="OrderList">Siparişler</a></li>
+                                        <li><a asp-controller="Admin" asp-action="UserList">Kullanıcılar</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            if (User.IsInRole("kurye"))
+                            {
+
+                                <li>
+                                    <a href="#">Kurye İşlemleri</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a asp-controller="Admin" asp-action="ProductList">Sipariş Durumu</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            if (User.IsInRole("kasiyer"))
+                            {
+
+                                <li>
+                                    <a href="#">Kasiyer İşlemleri</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a asp-controller="Admin" asp-action="ProductList">Kasa</a></li>
+                                    </ul>
+                                </li>
+                            }
+
+                        }
+                        <li><a href="./contact.html">İletişim</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3">
+                <div class="header__cart">
+
+                    <ul>
+                        <li><a asp-controller="Cart" asp-action="Index"><i class="fa fa-shopping-bag"></i> @*<span>@Model.cart</span>*@</a></li>
+                    </ul>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <ul>
+                            <li><a asp-controller="Admin" asp-action="Index"><i class="btn-sm site-btn text-white">Admin Panel</i> @*<span>@Model.cart</span>*@</a></li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="humberger__open">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+
+</header>

@@ -1,0 +1,37 @@
+﻿@model ProductDetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row mt-5">
+    <div class="col-md-3">
+        <img src="~/img/@Model.Product.ImageUrl" alt="@Model.Product.Name" class="img-fluid" />
+    </div>
+    <div class="col-lg-6 col-md-6">
+        <div class="product__details__text">
+            <h3>@Model.Product.Name</h3>
+
+            <div class="product__details__price text-dark">@Model.Product.Price <i class="fas fa-lira-sign text-dark"></i></div>
+            @foreach (var category in Model.Categories)
+            {
+                <a class="btn btn-link p-0 mb-3 btn-dark text-white text-decoration-none ">@category.Name</a>
+            }
+            <p>
+                @Html.Raw(Model.Product.Description)
+            </p>
+
+            <form asp-controller="Cart" asp-action="AddToCart" method="post" class="form-inline">
+                <input type="hidden" name="productId" value="@Model.Product.Id"  />
+                <div class="input-group mb-3 mt-3" style="border-radius:25px">
+                    <input type="number" name="quantity" class="form-control" value="1" min="1" step="1" style="width:100px;" />
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-dark">
+                            <i class="fa fa-shopping-cart"></i> Sepete Ekle
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>        
+</div>
+

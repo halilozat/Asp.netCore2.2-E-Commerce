@@ -1,0 +1,331 @@
+﻿@model OrderModel
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<section class="breadcrumb-section set-bg mt-5" data-setbg="img/breadcrumb.jpg" style="background:black">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Ödeme İşlemleri</h2>
+                    <div class="breadcrumb__option">
+                        <a asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                        <span>Ödeme İşlemlerim</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hr />
+
+
+<div class="checkout__form">
+
+
+    <form action="/checkout" method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <h4 class="mb-3">Sipariş Bilgileri</h4>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="@Model.FirstName"></label>
+                        <input asp-for="@Model.FirstName" value="" class="form-control" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="@Model.LastName"></label>
+                        <input asp-for="@Model.LastName" value="" class="form-control" />
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.Address"></label>
+                    <textarea asp-for="@Model.Address" class="form-control"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="@Model.City"></label>
+                        <input asp-for="@Model.City" value="" class="form-control" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="@Model.Phone"></label>
+                        <input asp-for="@Model.Phone" value="" class="form-control" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label asp-for="@Model.Email"></label>
+                        <input asp-for="@Model.Email" value="" class="form-control" />
+                    </div>
+                </div>
+                <hr class="mb-4" />
+                <div id="paymentInfo">
+                    <h4 class="mb-3">Kart Bilgileri</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="@Model.CardName"></label>
+                            <input asp-for="@Model.CardName" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="@Model.CardNumber"></label>
+                            <input asp-for="@Model.CardNumber" value="" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="@Model.ExpirationMonth"></label>
+                            <input asp-for="@Model.ExpirationMonth" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="@Model.ExpirationYear"></label>
+                            <input asp-for="@Model.ExpirationYear" value="" class="form-control" />
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label asp-for="@Model.Cvv"></label>
+                            <input asp-for="@Model.Cvv" value="" class="form-control" />
+                        </div>
+                    </div>
+                    <hr class="mb-4" />
+                </div>
+
+
+                <button type="submit" class="btn btn-success btn-lg btn-block mb-5">Siparişi Tamamla</button>
+
+            </div>
+            <div class="col-md-4 mb-4">
+
+                <div class="checkout__order">
+                    <h4>Siparişim</h4>
+                    <div class="checkout__order__products">Ürünler <span>Toplam</span></div>
+                    <ul>
+                        @foreach (var item in Model.CartModel.CartItems)
+                        {
+                            <li> @item.Name<small> x @item.Quantity</small><span>@item.Price TL</span></li>
+                        }
+
+
+                    </ul>
+                    <div class="checkout__order__subtotal">Ara Toplam <span>@Model.CartModel.TotalPrice() TL</span></div>
+                    <div class="checkout__order__total">Toplam <span>@Model.CartModel.TotalPrice() TL</span></div>
+                    <div class="d-block my-3 mb-5">
+
+                        @*<select asp-for="PaymentTypes">*@
+
+                        @foreach (var payment in ViewBag.PaymentTypes)
+                        {
+                            <div>
+                                @*<option value="@payment">@GetEnumValue.GetDescription(payment)</option>*@
+                                <input onclick="handleClick(this)" type="radio" asp-for="PaymentTypes" value="@payment" />
+                                <label>@GetEnumValue.GetDescription(payment)</label>
+                            </div>
+                        }
+
+                        @*</select>*@
+                        @*<select asp-for="PaymentTypes" asp-items="Html.GetEnumSelectList<EnumPaymentTypes>()">
+                                <option selected="selected" value="">Ödeme Durumunu Seçin!</option>
+                            </select>*@
+                        <br />
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+
+
+@section Scripts
+{
+    <script> 
+        function handleClick(myRadio) {
+            if (myRadio.value != "CreditCart") {
+                $("#paymentInfo").hide()               
+            }
+            if (myRadio.value == "CreditCart") {
+                $("#paymentInfo").show()
+            }
+        }
+    </script>
+
+    <script>
+        $(".checkout__order__total").on("click", function () {
+            var inputData = {
+                id = 2
+            }
+
+            $.post("/GetPaymentTypeValue", JSON.stringify(
+                inputData)).done(function (data) {
+                    console.log("tamamlandı");
+                });
+        })
+        
+
+    </script>
+    
+}
+
+
+
+
+
+@*<div class="checkout__form">
+        <h4>Ödeme Detayları</h4>
+        <form action="#">
+            <div class="row">
+                <div class="col-lg-8 col-md-6">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.FirstName"></label>
+                                <input asp-for="@Model.FirstName" value="" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.LastName"></label>
+                                <input asp-for="@Model.LastName" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout__input">
+                        <label asp-for="@Model.Address"></label>
+                        <textarea asp-for="@Model.Address" value="" class="form-control"></textarea>
+
+                    </div>
+                    <div class="checkout__input">
+                        <label asp-for="@Model.City"></label>
+                        <input asp-for="@Model.City" value="" class="form-control" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.Phone"></label>
+                                <input asp-for="@Model.Phone" value="" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.Email"></label>
+                                <input asp-for="@Model.Email" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout__input">
+                        <label asp-for="@Model.OrderNote"></label>
+                        <textarea asp-for="@Model.OrderNote" value="" class="form-control "></textarea>
+                    </div>
+                    <select asp-for="PaymentTypes">
+
+                        @foreach (var payment in ViewBag.PaymentTypes)
+                        {
+                            <option value="@payment">@GetEnumValue.GetDescription(payment)</option>
+                        }
+
+                    </select>
+                    <h4>
+                        Kart Detayları
+                    </h4>
+                    KREDİ KARTI BÖLÜMÜ
+
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.CardName"></label>
+                                <input asp-for="@Model.CardName" value="" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.CardNumber"></label>
+                                <input asp-for="@Model.CardNumber" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.ExpirationMonth"></label>
+                                <input asp-for="@Model.ExpirationMonth" value="" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.ExpirationYear"></label>
+                                <input asp-for="@Model.ExpirationYear" value="" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="checkout__input">
+                                <label asp-for="@Model.Cvv"></label>
+                                <input asp-for="@Model.Cvv" value="" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+
+    <div class="col-lg-4 col-md-6">
+
+            <h4>Siparişim</h4>
+            <div class="checkout__order__products">Ürünler <span>Toplam</span></div>
+            <ul>
+                @foreach (var item in Model.CartModel.CartItems)
+                {
+                    <li> @item.Name<small> x @item.Quantity</small><span>@item.Price TL</span></li>
+                }
+
+
+            </ul>
+            <div class="checkout__order__subtotal">Ara Toplam <span>@Model.CartModel.TotalPrice() TL</span></div>
+            <div class="checkout__order__total">Toplam <span>@Model.CartModel.TotalPrice() TL</span></div>
+            <div class="d-block my-3 mb-5">
+    <div class="custom-control custom-radio">
+            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked="" required="">
+            <label class="custom-control-label" for="credit">Credit card</label>
+        </div>
+        <div class="custom-control custom-radio">
+            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required="">
+            <label class="custom-control-label" for="eft">EFT</label>
+        </div>
+    <select asp-for="PaymentTypes" asp-items="Html.GetEnumSelectList<EnumPaymentTypes>()">
+            <option selected="selected" value="">Ödeme Durumunu Seçin!</option>
+        </select>
+        <br />
+    </div>
+    <div class="checkout__input__checkbox">
+            <label>
+                Kapıda Ödeme
+                <input type="radio" id="paypal">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="checkout__input__checkbox">
+            <label>
+                Kapıda Kredi Kartı
+                <input type="radio" id="paypal">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+        <div class="checkout__input__checkbox">
+            <label>
+                Kredi Kartı
+                <input type="radio" id="paypal">
+                <span class="checkmark"></span>
+            </label>
+        </div>
+
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Siparişi Tamamla</button>
+
+                </div>
+            </div>
+        </form>
+    </div>*@

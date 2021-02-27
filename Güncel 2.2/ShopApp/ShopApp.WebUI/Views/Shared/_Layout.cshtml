@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/User/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/User/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/User/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/User/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/User/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/User/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/User/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/User/css/style.css" type="text/css">
+
+    
+    <meta name="viewport" content="width=device-width" />
+
+    @await Html.PartialAsync("_LayoutCssPartial")
+
+    <title>ShopApp</title>
+</head>
+<body>
+    <partial name="_navbar" />
+
+
+    <div class="container-fluid pt-25 mb-5">
+
+        @if (TempData["message"] != null)
+        {
+            <partial name="_resultmessage" model="@(TempData.Get<ResultMessage>("message"))" />
+        }
+
+
+        @RenderBody()
+    </div>
+
+
+    @await Html.PartialAsync("_LayoutJsPartial")
+    @RenderSection("Scripts", false)
+
+
+
+    /
+    <!-- Js Plugins -->
+    <script src="~/Userjs/jquery-3.3.1.min.js"></script>
+    <script src="~/Userjs/bootstrap.min.js"></script>
+    <script src="~/Userjs/jquery.nice-select.min.js"></script>
+    <script src="~/Userjs/jquery-ui.min.js"></script>
+    <script src="~/Userjs/jquery.slicknav.js"></script>
+    <script src="~/Userjs/mixitup.min.js"></script>
+    <script src="~/Userjs/owl.carousel.min.js"></script>
+    <script src="~/Userjs/main.js"></script>
+
+</body>
+</html>

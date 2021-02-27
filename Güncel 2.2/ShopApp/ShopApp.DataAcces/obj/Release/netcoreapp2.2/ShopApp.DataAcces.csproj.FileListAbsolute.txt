@@ -1,0 +1,14 @@
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\bin\Release\netcoreapp2.2\ShopApp.DataAcces.deps.json
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\bin\Release\netcoreapp2.2\ShopApp.DataAcces.runtimeconfig.json
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\bin\Release\netcoreapp2.2\ShopApp.DataAcces.runtimeconfig.dev.json
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\bin\Release\netcoreapp2.2\ShopApp.DataAcces.dll
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\bin\Release\netcoreapp2.2\ShopApp.DataAcces.pdb
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\bin\Release\netcoreapp2.2\ShopApp.Entities.dll
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\bin\Release\netcoreapp2.2\ShopApp.Entities.pdb
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\obj\Release\netcoreapp2.2\ShopApp.DataAcces.csprojAssemblyReference.cache
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\obj\Release\netcoreapp2.2\ShopApp.DataAcces.csproj.CoreCompileInputs.cache
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\obj\Release\netcoreapp2.2\ShopApp.DataAcces.AssemblyInfoInputs.cache
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\obj\Release\netcoreapp2.2\ShopApp.DataAcces.AssemblyInfo.cs
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\obj\Release\netcoreapp2.2\ShopApp.DataAcces.csproj.CopyComplete
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\obj\Release\netcoreapp2.2\ShopApp.DataAcces.dll
+C:\Users\halilozat\source\repos\ShopApp\ShopApp.DataAcces\obj\Release\netcoreapp2.2\ShopApp.DataAcces.pdb

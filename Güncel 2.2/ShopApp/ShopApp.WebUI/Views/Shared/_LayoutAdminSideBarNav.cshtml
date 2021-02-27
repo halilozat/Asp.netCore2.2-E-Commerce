@@ -1,0 +1,40 @@
+﻿<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Menu</div>
+                <a class="nav-link" asp-controller="Home" asp-action="Index">
+                    <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
+                    Ana Sayfaya Dön
+                </a>
+                <div class="sb-sidenav-menu-heading">Ürün İşlemleri</div>
+                <a class="nav-link" asp-controller="Admin" asp-action="CategoryList">
+                    <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                    Kategoriler
+                </a>
+                <a class="nav-link" asp-controller="Admin" asp-action="ProductList">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Ürünler
+                </a>
+                <div class="sb-sidenav-menu-heading">Kullanıcı İşlemleri</div>
+                <a class="nav-link" asp-controller="Admin" asp-action="UserList">
+                    <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                    Kullanıcılar/Müşteriler
+                </a>
+                <a class="nav-link" asp-controller="Admin" asp-action="RoleList">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
+                    Roller
+                </a>
+                <div class="sb-sidenav-menu-heading">Sipariş İşlemleri</div>
+                <a class="nav-link" asp-controller="Admin" asp-action="OrderList">
+                    <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                    Siparişler
+                </a>
+            </div>
+        </div>
+        <div class="sb-sidenav-footer">
+            <div class="small">Giriş Yapan Kullanıcı:</div>
+            <div class="small">@User.Identity.Name</div>
+        </div>
+    </nav>
+</div>
